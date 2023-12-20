@@ -17,11 +17,11 @@
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
-		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="prefix" value="/WEB-INF/views/" /> <!-- 해당폴더에있는 -->
+		<beans:property name="suffix" value=".jsp" /><!-- jsp파일 열겠다 -->
 	</beans:bean>
 	
-	<context:component-scan base-package="com.hanul.web" />
+	<context:component-scan base-package="com.hanul.web" /> <!-- 기본 패키지를 스캐닝 -->
 	
 	
 	
