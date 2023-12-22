@@ -1,9 +1,10 @@
-package com.hanul.web;
+package kr.co.web;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -11,6 +12,38 @@ import member.MemberVO;
 
 @Controller
 public class MemberController {
+	
+	@RequestMapping("/login_result")
+	public String login(String userid , String userpw) {
+		//아이디&&비번 일치해서 로그인 성공하면 home 화면으로 연결
+		//			일치하지 않으면 로그인 화면으로 연결 
+		//아이디 : admin 비번 : 0000
+		if(userid.equals("admin")  && userpw.equals("0000")) {
+//			return "home";  //forward방식
+			//redirect방식
+			return "redirect:/";
+		}else {
+//			return "member/login"; forward방식
+			return "redirect:/login";
+		}
+		
+	}
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "member/login";
+	}
+	
+	@RequestMapping("/joinPath/{name}/{gender}/{e}/{age}")
+	public String join(Model model , @PathVariable String name , @PathVariable String gender , @PathVariable("e") String email , @PathVariable String age) {
+		model.addAttribute("name" , name);
+		model.addAttribute("gender" , gender);
+		model.addAttribute("email" , email);
+		model.addAttribute("age" , age);
+		model.addAttribute("method" , "@@PathVariable 방식");
+		return "member/info";
+	}
+	
 	
 	@RequestMapping("joinData")
 	public String join(Model model, MemberVO vo) {
