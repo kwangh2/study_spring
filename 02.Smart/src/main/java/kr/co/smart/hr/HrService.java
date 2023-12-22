@@ -1,4 +1,4 @@
-package kr.co.smart;
+package kr.co.smart.hr;
 
 import java.util.List;
 
@@ -6,8 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
-import kr.co.smart.hr.EmployeeVO;
 
 @Service
 public class HrService {
