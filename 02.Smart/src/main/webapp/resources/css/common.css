@@ -24,3 +24,5 @@ table th:last-child, table td:last-child {
 table.tb-list th , table.tb-list td { padding: 0px 16px; text-align: center;}
 
 tabl.tb-row th, table.tb-row td { padding: 10px 16px;}
+
+a.text-link:hover { text-decoration: underline; font-weight: bold}
