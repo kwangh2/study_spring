@@ -17,8 +17,8 @@ public class HrService {
 	}
 	
 	//사원목록조회
-	public List<EmployeeVO> employee_list() {
-		return sql.selectList("hr.list");
+	public List<EmployeeVO> employee_list(int department_id) {
+		return sql.selectList("hr.list" , department_id);
 		
 	}
 	
@@ -45,5 +45,10 @@ public class HrService {
 	//매니저 적용할 사원 목록 조회
 	public List<EmployeeVO> hr_manager_list() {
 		return sql.selectList("hr.managerList");
+	}
+	
+	//사원들이 속해 있는 부서목록 조회
+	public List<DepartmentVO> employee_department_list() {
+		return sql.selectList("hr.employeeDptList");
 	}
 }

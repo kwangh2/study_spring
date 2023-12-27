@@ -2,6 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="hr">
 
+	<select id="employeeDptList" resultType="department">
+	select distinct department_id, nvl(department_name, '소속없음')  department_name
+	from employees e left outer join departments d using (department_id)  order by department_name
+	</select>
+
 	<select id="managerList" resultType="employee">
 		select employee_id,
 		last_name, first_name, last_name|| ' ' ||first_name name
@@ -45,6 +50,8 @@
 		from employees e left outer join departments d on e.department_id =
 		d.department_id
 		inner join jobs j on j.job_id = e.job_id
+		<if test="department_id > 0">where e.department_id = #{department_id}</if>
+		<if test="department_id == 0">where e.department_id is null</if>
 		order by employee_id
 	</select>
 

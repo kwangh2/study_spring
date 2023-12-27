@@ -9,9 +9,24 @@
 </head>
 <body>
 	<h3>사원목록</h3>
+	<div class="row mb-2 justify-content-between">
+		<div class="col-auto d-flex align">
+			<label class="me-2 w-px100">부서명</label>
+			<form method="post" action="list">
+				<select name="department_id" class="from-select" onchange="submit()">
+					<option value="-1">전체</option>
+					<c:forEach items="${departments }" var="d">
+						<option
+							<c:if test="${department_id eq d.department_id}">selected</c:if>
+							value="${d.department_id }">${d.department_name }</option>
+					</c:forEach>
+				</select>
+			</form>
+		</div>
+	</div>
 	<div class="row mb-2">
-	<div class="col-auto">
-		<a href="register" class="btn btn-primary" >고객 등록</a>
+		<div class="col-auto">
+			<a href="register" class="btn btn-primary">고객 등록</a>
 		</div>
 	</div>
 	<table class="table tb-list">

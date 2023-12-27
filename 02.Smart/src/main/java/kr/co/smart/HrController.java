@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.smart.hr.EmployeeVO;
 import kr.co.smart.hr.HrService;
@@ -15,6 +16,7 @@ public class HrController {
 	
 	
 	@Autowired private HrService service;
+	
 	
 	@RequestMapping("/insert")
 	public String insert(EmployeeVO vo) {
@@ -68,11 +70,16 @@ public class HrController {
 	
 	//사원목록 요청
 	@RequestMapping("/list")
-	public String list(HttpSession session, Model model) {
+	public String list(HttpSession session, Model model, @RequestParam(defaultValue = "-1") int department_id) {
 		session.setAttribute("category", "hr"); //사이드바
 		
 		
-		model.addAttribute("list",service.employee_list());
+		model.addAttribute("departments", service.employee_department_list());
+		
+		
+		model.addAttribute("list",service.employee_list(department_id));
+		
+		model.addAttribute("department_id", department_id);
 		return "hr/list";
 	}
 }

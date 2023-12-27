@@ -15,6 +15,31 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-email</artifactId>
+    <version>1.4</version>
+</dependency>
+
+
+
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+	<!-- 스프링 테스트  -->
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-test</artifactId>
+    <version>5.3.25</version>
+    <scope>test</scope>
+</dependency>
+	
+<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
+<!-- 암호화를 위한 세큐리티  -->
+<dependency>
+    <groupId>org.springframework.security</groupId>
+    <artifactId>spring-security-core</artifactId>
+    <version>5.7.5</version>
+</dependency>
 
 		<!-- 필드에 대한 getter/setter 생성자 선언 -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->

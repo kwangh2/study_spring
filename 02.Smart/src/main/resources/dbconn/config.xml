@@ -36,4 +36,5 @@
 <bean class="org.mybatis.spring.SqlSessionTemplate" id="hr"> <!-- 여기 아이디로 퀄리파이어 구분 -->
 	<constructor-arg name="sqlSessionFactory" ref="factory_hr"/>
 </bean>
+<bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </beans>
