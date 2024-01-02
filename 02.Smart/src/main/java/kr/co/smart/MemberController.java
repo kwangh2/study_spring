@@ -2,6 +2,7 @@ package kr.co.smart;
 
 import java.util.UUID;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import kr.co.smart.common.CommonUtility;
 import kr.co.smart.member.MemberService;
@@ -94,5 +96,32 @@ public class MemberController {
 	public String login(HttpSession session) {
 		session.setAttribute("category", "login");
 		return "default/member/login";
+	}
+	
+	@RequestMapping("/changePassword")
+	public String changePassword() {
+		
+		
+		return "member/password";
+	}
+	
+	@ResponseBody
+	@RequestMapping("confirmPassword")
+	public int confirmPassword(String user_pw , HttpSession session) {
+		MemberVO vo = (MemberVO)session.getAttribute("loginInfo");
+		if(vo==null) {
+			return -1;
+		}else {
+			return pwEncoder.matches(user_pw, vo.getUser_pw()) ? 0 : 1;
+		}
+		
+//		service.mem
+	}
+	
+	@RequestMapping("/updatePassword")
+	public boolean updatePassword(String user_pw, HttpSession session) {
+		MemberVO vo =(MemberVO)session.getAttribute("loginInfo");
+		vo.setUser_pw(pwEncoder.encode(user_pw));
+		return service.member_resetPassword(vo) == 1 ? true : false;
 	}
 }
