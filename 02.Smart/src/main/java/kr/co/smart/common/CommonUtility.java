@@ -9,13 +9,13 @@ import kr.co.smart.member.MemberVO;
 
 @Service
 public class CommonUtility {
-	private String EMAIL = "rkdgml5744@naver.com";
+	private String EMAIL = "";
 	private void connectMailServer(HtmlEmail mail) {
 		mail.setDebug(true);
 		mail.setCharset("utf-8");
 		
 		mail.setHostName("smtp.naver.com");
-		mail.setAuthentication(EMAIL,"papillion1"); //관리자 메일주소, 비번
+		mail.setAuthentication(EMAIL,"비밀번호"); //관리자 메일주소, 비번
 		mail.setSSLOnConnect(true); //로그인 버튼 클릭
 	}
 	
