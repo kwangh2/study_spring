@@ -8,13 +8,29 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CustomerService {
-	@Autowired
-	private SqlSession sql;
+	@Autowired private SqlSession sql;
 	
-	public List<CustomerVO> customer_list(String query) {
+	
+	public int customer_insert(CustomerVO vo) {
+		return sql.insert("cu.insert",  vo);
+	}
+	
+	public int customer_update(CustomerVO vo) {
+		return sql.update("cu.update", vo);
+	}
+	
+	public int customer_delete(int id) {
+		return sql.delete("cu.delete", id);
+	}
+	
+	
+	public List<CustomerVO> customer_list(String query){
+		// 파라미터 query 가 있으면 customer_id 로 검색하거나, name 으로 검색하도록 쿼리문 작성
 		return sql.selectList("cu.list", query);
 	}
-	public CustomerVO customer_info() {
-		return null;
+	
+	public CustomerVO customer_info(int id) {
+		// 파라미터 id는 숫자를  받아야 하고 customer_id 가 같은 고객정보를 조회하는 쿼리문 작성
+		return sql.selectOne("cu.info", id);
 	}
 }

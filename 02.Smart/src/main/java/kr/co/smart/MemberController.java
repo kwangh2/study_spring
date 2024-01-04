@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,48 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
-
+	
+	@Value("{naver_secret}")private String naver_secret;
+	@Value("{naver_client_id}")private String naver_client_id;
+	
+	
+	
+	//네이버로그인 요청
+	@RequestMapping("/naverLogin")
+	public String naverlogin(HttpSession session , HttpServletRequest request) {
+		//https://nid.naver.com/oauth2.0/authorize?response_type=code&
+//		client_id=AMulK_4xOI04TXlMzU1k
+//		&state=STATE_STRING&
+//		redirect_uri=CALLBACK_URL
+		String state = UUID.randomUUID().toString();
+		session.setAttribute("state", state);
+		
+		StringBuffer url= new StringBuffer("https://nid.naver.com/oauth2.0/authorize?response_type=code");
+		url.append("&client_id=").append("naver_client_id");
+		url.append("&state=").append(state);
+		url.append("&redirect_uri=").append(common.appURL(request)).append("/member/naverCallback"); //http://192.168.0.49/smart/member/naverCallback
+		
+		
+		return "redirect:" +url.toString();
+	}
+	
+	@RequestMapping("/naverCallback")
+	public String naverCallback(String state, String code) {
+		//https://nid.naver.com/oauth2.0/token?
+//		grant_type=authorization_code
+//		&client_id=jyvqXeaVOVmV
+//		&client_secret=527300A0_COq1_XV33cf
+//		&code=EIc5bFrl4RibFls1
+//		&state=9kgsGTfH4j7IyAkg  
+		StringBuffer url = new StringBuffer("https://nid.naver.com/oauth2.0/token?grant_type=authorization_code");
+		url.append("&client_id=").append(naver_client_id);
+		url.append("&client_secret=").append(naver_secret);
+		url.append("&code=").append(code);
+		url.append("&state=").append(state);
+		return "redirect:/";
+	}
+	
+	
 	@RequestMapping(value= "/resetPassword", produces = "text/html; charset=utf-8") @ResponseBody
 	public String resetPassword(MemberVO vo , HttpServletRequest request) {
 		vo = service.member_userid_email(vo);
