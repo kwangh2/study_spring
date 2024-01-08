@@ -121,13 +121,10 @@
 					</div>
 				</div>
 			</nav>
-
-
 			<!-- Page content-->
 			<div class="container-fluid my-3">
 				<tiles:insertAttribute name="container" />
 			</div>
-
 			<footer class="border-top py-4 text-center">
 				<div>Copyright &copy; website</div>
 			</footer>
