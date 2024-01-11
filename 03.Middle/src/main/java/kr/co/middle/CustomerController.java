@@ -18,7 +18,7 @@ import kr.co.middle.customer.CustomerVO;
 public class CustomerController {
 	@Autowired private CustomerService service;
 	
-	
+	org.mybatis.spring.
 	@RequestMapping("/insert")
 	public void insert(String vo) {
 		CustomerVO customer = new Gson().fromJson(vo, CustomerVO.class);
