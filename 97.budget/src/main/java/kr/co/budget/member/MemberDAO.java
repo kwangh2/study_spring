@@ -6,14 +6,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class MemberDAO implements MemberService{
 
-
     @Override
-    public int join(MemberVO vo) {
+    public int join(kr.co.budget.member.MemberVO vo) {
         return 0;
     }
 
     @Override
-    public int modify(MemberVO vo) {
+    public int modify(kr.co.budget.member.MemberVO vo) {
         return 0;
     }
 

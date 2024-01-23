@@ -25,8 +25,6 @@ m
 =src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml,d\3\d3e54629b9a71e7b6b2949fb63e8fbc3314079cf
 _
 /src/main/webapp/WEB-INF/views/tiles/default.jsp,e\d\edbbe9ef22cb55b213ce4d53ac6a6d1ca115218b
-X
-(src/main/java/kr/co/member/MemberVO.java,7\9\791139d9c7d74bba2dfb2b892aea3464b086cab8
 ]
 -src/main/webapp/WEB-INF/views/member/join.jsp,5\f\5f28de62260c434af076cc3364f45c928930ef88
 `
